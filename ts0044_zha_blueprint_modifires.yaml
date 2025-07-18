@@ -369,11 +369,6 @@ action:
                                   entity_id: !input modifier_input_number
                                 data:
                                   value: 1
-                              # Cancel previous timeout
-                              - service: timer.cancel
-                                target:
-                                  entity_id: !input modifier_timer
-                              # Start new timeout
                               - service: timer.start
                                 target:
                                   entity_id: !input modifier_timer
@@ -394,9 +389,6 @@ action:
                                   entity_id: !input modifier_input_number
                                 data:
                                   value: 2
-                              - service: timer.cancel
-                                target:
-                                  entity_id: !input modifier_timer
                               - service: timer.start
                                 target:
                                   entity_id: !input modifier_timer
@@ -417,9 +409,6 @@ action:
                                   entity_id: !input modifier_input_number
                                 data:
                                   value: 3
-                              - service: timer.cancel
-                                target:
-                                  entity_id: !input modifier_timer
                               - service: timer.start
                                 target:
                                   entity_id: !input modifier_timer
@@ -440,9 +429,6 @@ action:
                                   entity_id: !input modifier_input_number
                                 data:
                                   value: 4
-                              - service: timer.cancel
-                                target:
-                                  entity_id: !input modifier_timer
                               - service: timer.start
                                 target:
                                   entity_id: !input modifier_timer
