@@ -1,0 +1,625 @@
+blueprint:
+  name: TS0044 4-Button Remote Advanced (ZHA)
+  description: |
+    Advanced control for TS0044 4-button remote with modifier support.
+    Long press can act as a modifier for other buttons or as a standalone action.
+    Provides up to 44 different actions!
+    
+    REQUIRED: You must create these helpers before using this blueprint:
+    1. Input Number (min: 0, max: 4, step: 1)
+    2. Timer
+  domain: automation
+  input:
+    remote:
+      name: TS0044 Remote
+      description: Select the TS0044 remote device
+      selector:
+        device:
+          integration: zha
+          model: TS0044
+    
+    # Helper entities
+    modifier_input_number:
+      name: Modifier State Helper
+      description: |
+        Select the Input Number helper to track modifier state.
+        Create via Settings → Helpers → Input Number
+        (Min: 0, Max: 4, Step: 1)
+      selector:
+        entity:
+          domain: input_number
+    
+    modifier_timer:
+      name: Modifier Timer Helper
+      description: |
+        Select the Timer helper for modifier timeout.
+        Create via Settings → Helpers → Timer
+      selector:
+        entity:
+          domain: timer
+    
+    # Modifier Mode Settings
+    button_1_modifier_mode:
+      name: Button 1 - Use as Modifier?
+      description: When enabled, holding button 1 changes actions for all other buttons
+      default: false
+      selector:
+        boolean:
+    button_2_modifier_mode:
+      name: Button 2 - Use as Modifier?
+      description: When enabled, holding button 2 changes actions for all other buttons
+      default: false
+      selector:
+        boolean:
+    button_3_modifier_mode:
+      name: Button 3 - Use as Modifier?
+      description: When enabled, holding button 3 changes actions for all other buttons
+      default: false
+      selector:
+        boolean:
+    button_4_modifier_mode:
+      name: Button 4 - Use as Modifier?
+      description: When enabled, holding button 4 changes actions for all other buttons
+      default: false
+      selector:
+        boolean:
+    
+    modifier_timeout:
+      name: Modifier Timeout (seconds)
+      description: How long the modifier stays active after long press
+      default: 10
+      selector:
+        number:
+          min: 1
+          max: 60
+          step: 1
+          unit_of_measurement: seconds
+    
+    # Normal Actions (No Modifier)
+    button_1_single:
+      name: Button 1 - Single Press (Normal)
+      default: []
+      selector:
+        action: {}
+    button_1_double:
+      name: Button 1 - Double Press (Normal)
+      default: []
+      selector:
+        action: {}
+    button_1_long:
+      name: Button 1 - Long Press (When NOT modifier)
+      default: []
+      selector:
+        action: {}
+    
+    button_2_single:
+      name: Button 2 - Single Press (Normal)
+      default: []
+      selector:
+        action: {}
+    button_2_double:
+      name: Button 2 - Double Press (Normal)
+      default: []
+      selector:
+        action: {}
+    button_2_long:
+      name: Button 2 - Long Press (When NOT modifier)
+      default: []
+      selector:
+        action: {}
+    
+    button_3_single:
+      name: Button 3 - Single Press (Normal)
+      default: []
+      selector:
+        action: {}
+    button_3_double:
+      name: Button 3 - Double Press (Normal)
+      default: []
+      selector:
+        action: {}
+    button_3_long:
+      name: Button 3 - Long Press (When NOT modifier)
+      default: []
+      selector:
+        action: {}
+    
+    button_4_single:
+      name: Button 4 - Single Press (Normal)
+      default: []
+      selector:
+        action: {}
+    button_4_double:
+      name: Button 4 - Double Press (Normal)
+      default: []
+      selector:
+        action: {}
+    button_4_long:
+      name: Button 4 - Long Press (When NOT modifier)
+      default: []
+      selector:
+        action: {}
+    
+    # Actions with Button 1 as Modifier
+    mod1_button_1_single:
+      name: Button 1 - Single Press (With Modifier 1)
+      default: []
+      selector:
+        action: {}
+    mod1_button_1_double:
+      name: Button 1 - Double Press (With Modifier 1)
+      default: []
+      selector:
+        action: {}
+    mod1_button_2_single:
+      name: Button 2 - Single Press (With Modifier 1)
+      default: []
+      selector:
+        action: {}
+    mod1_button_2_double:
+      name: Button 2 - Double Press (With Modifier 1)
+      default: []
+      selector:
+        action: {}
+    mod1_button_3_single:
+      name: Button 3 - Single Press (With Modifier 1)
+      default: []
+      selector:
+        action: {}
+    mod1_button_3_double:
+      name: Button 3 - Double Press (With Modifier 1)
+      default: []
+      selector:
+        action: {}
+    mod1_button_4_single:
+      name: Button 4 - Single Press (With Modifier 1)
+      default: []
+      selector:
+        action: {}
+    mod1_button_4_double:
+      name: Button 4 - Double Press (With Modifier 1)
+      default: []
+      selector:
+        action: {}
+    
+    # Actions with Button 2 as Modifier
+    mod2_button_1_single:
+      name: Button 1 - Single Press (With Modifier 2)
+      default: []
+      selector:
+        action: {}
+    mod2_button_1_double:
+      name: Button 1 - Double Press (With Modifier 2)
+      default: []
+      selector:
+        action: {}
+    mod2_button_2_single:
+      name: Button 2 - Single Press (With Modifier 2)
+      default: []
+      selector:
+        action: {}
+    mod2_button_2_double:
+      name: Button 2 - Double Press (With Modifier 2)
+      default: []
+      selector:
+        action: {}
+    mod2_button_3_single:
+      name: Button 3 - Single Press (With Modifier 2)
+      default: []
+      selector:
+        action: {}
+    mod2_button_3_double:
+      name: Button 3 - Double Press (With Modifier 2)
+      default: []
+      selector:
+        action: {}
+    mod2_button_4_single:
+      name: Button 4 - Single Press (With Modifier 2)
+      default: []
+      selector:
+        action: {}
+    mod2_button_4_double:
+      name: Button 4 - Double Press (With Modifier 2)
+      default: []
+      selector:
+        action: {}
+    
+    # Actions with Button 3 as Modifier
+    mod3_button_1_single:
+      name: Button 1 - Single Press (With Modifier 3)
+      default: []
+      selector:
+        action: {}
+    mod3_button_1_double:
+      name: Button 1 - Double Press (With Modifier 3)
+      default: []
+      selector:
+        action: {}
+    mod3_button_2_single:
+      name: Button 2 - Single Press (With Modifier 3)
+      default: []
+      selector:
+        action: {}
+    mod3_button_2_double:
+      name: Button 2 - Double Press (With Modifier 3)
+      default: []
+      selector:
+        action: {}
+    mod3_button_3_single:
+      name: Button 3 - Single Press (With Modifier 3)
+      default: []
+      selector:
+        action: {}
+    mod3_button_3_double:
+      name: Button 3 - Double Press (With Modifier 3)
+      default: []
+      selector:
+        action: {}
+    mod3_button_4_single:
+      name: Button 4 - Single Press (With Modifier 3)
+      default: []
+      selector:
+        action: {}
+    mod3_button_4_double:
+      name: Button 4 - Double Press (With Modifier 3)
+      default: []
+      selector:
+        action: {}
+    
+    # Actions with Button 4 as Modifier
+    mod4_button_1_single:
+      name: Button 1 - Single Press (With Modifier 4)
+      default: []
+      selector:
+        action: {}
+    mod4_button_1_double:
+      name: Button 1 - Double Press (With Modifier 4)
+      default: []
+      selector:
+        action: {}
+    mod4_button_2_single:
+      name: Button 2 - Single Press (With Modifier 4)
+      default: []
+      selector:
+        action: {}
+    mod4_button_2_double:
+      name: Button 2 - Double Press (With Modifier 4)
+      default: []
+      selector:
+        action: {}
+    mod4_button_3_single:
+      name: Button 3 - Single Press (With Modifier 4)
+      default: []
+      selector:
+        action: {}
+    mod4_button_3_double:
+      name: Button 3 - Double Press (With Modifier 4)
+      default: []
+      selector:
+        action: {}
+    mod4_button_4_single:
+      name: Button 4 - Single Press (With Modifier 4)
+      default: []
+      selector:
+        action: {}
+    mod4_button_4_double:
+      name: Button 4 - Double Press (With Modifier 4)
+      default: []
+      selector:
+        action: {}
+
+mode: restart
+max_exceeded: silent
+
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+  - platform: state
+    entity_id: !input modifier_timer
+    from: "active"
+    to: "idle"
+    id: timer_finished
+
+action:
+  - variables:
+      modifier_input_number: !input modifier_input_number
+      modifier_timer: !input modifier_timer
+  - choose:
+      # Handle modifier timeout
+      - conditions:
+          - condition: trigger
+            id: timer_finished
+        sequence:
+          - service: input_number.set_value
+            target:
+              entity_id: !input modifier_input_number
+            data:
+              value: 0
+    default:
+      - variables:
+          command: "{{ trigger.event.data.command }}"
+          endpoint_id: "{{ trigger.event.data.endpoint_id }}"
+          button_1_is_modifier: !input button_1_modifier_mode
+          button_2_is_modifier: !input button_2_modifier_mode
+          button_3_is_modifier: !input button_3_modifier_mode
+          button_4_is_modifier: !input button_4_modifier_mode
+          modifier_timeout_sec: !input modifier_timeout
+          active_modifier: "{{ states(modifier_input_number) | int(0) }}"
+      
+      - choose:
+          # Handle long press events
+          - conditions:
+              - "{{ command == 'remote_button_long_press' }}"
+            sequence:
+              - choose:
+                  # Button 1 long press
+                  - conditions:
+                      - "{{ endpoint_id == 1 }}"
+                    sequence:
+                      - choose:
+                          - conditions:
+                              - "{{ button_1_is_modifier }}"
+                            sequence:
+                              # Set modifier state
+                              - service: input_number.set_value
+                                target:
+                                  entity_id: !input modifier_input_number
+                                data:
+                                  value: 1
+                              # Cancel previous timeout
+                              - service: timer.cancel
+                                target:
+                                  entity_id: !input modifier_timer
+                              # Start new timeout
+                              - service: timer.start
+                                target:
+                                  entity_id: !input modifier_timer
+                                data:
+                                  duration: "{{ modifier_timeout_sec }}"
+                        default: !input button_1_long
+                  
+                  # Button 2 long press
+                  - conditions:
+                      - "{{ endpoint_id == 2 }}"
+                    sequence:
+                      - choose:
+                          - conditions:
+                              - "{{ button_2_is_modifier }}"
+                            sequence:
+                              - service: input_number.set_value
+                                target:
+                                  entity_id: !input modifier_input_number
+                                data:
+                                  value: 2
+                              - service: timer.cancel
+                                target:
+                                  entity_id: !input modifier_timer
+                              - service: timer.start
+                                target:
+                                  entity_id: !input modifier_timer
+                                data:
+                                  duration: "{{ modifier_timeout_sec }}"
+                        default: !input button_2_long
+                  
+                  # Button 3 long press
+                  - conditions:
+                      - "{{ endpoint_id == 3 }}"
+                    sequence:
+                      - choose:
+                          - conditions:
+                              - "{{ button_3_is_modifier }}"
+                            sequence:
+                              - service: input_number.set_value
+                                target:
+                                  entity_id: !input modifier_input_number
+                                data:
+                                  value: 3
+                              - service: timer.cancel
+                                target:
+                                  entity_id: !input modifier_timer
+                              - service: timer.start
+                                target:
+                                  entity_id: !input modifier_timer
+                                data:
+                                  duration: "{{ modifier_timeout_sec }}"
+                        default: !input button_3_long
+                  
+                  # Button 4 long press
+                  - conditions:
+                      - "{{ endpoint_id == 4 }}"
+                    sequence:
+                      - choose:
+                          - conditions:
+                              - "{{ button_4_is_modifier }}"
+                            sequence:
+                              - service: input_number.set_value
+                                target:
+                                  entity_id: !input modifier_input_number
+                                data:
+                                  value: 4
+                              - service: timer.cancel
+                                target:
+                                  entity_id: !input modifier_timer
+                              - service: timer.start
+                                target:
+                                  entity_id: !input modifier_timer
+                                data:
+                                  duration: "{{ modifier_timeout_sec }}"
+                        default: !input button_4_long
+          
+          # Handle single and double press events
+          - conditions:
+              - "{{ command in ['remote_button_short_press', 'remote_button_double_press'] }}"
+            sequence:
+              - choose:
+                  # No modifier active
+                  - conditions:
+                      - "{{ active_modifier == 0 }}"
+                    sequence:
+                      - choose:
+                          # Button 1
+                          - conditions:
+                              - "{{ endpoint_id == 1 }}"
+                            sequence:
+                              - choose:
+                                  - conditions:
+                                      - "{{ command == 'remote_button_short_press' }}"
+                                    sequence: !input button_1_single
+                                  - conditions:
+                                      - "{{ command == 'remote_button_double_press' }}"
+                                    sequence: !input button_1_double
+                          # Button 2
+                          - conditions:
+                              - "{{ endpoint_id == 2 }}"
+                            sequence:
+                              - choose:
+                                  - conditions:
+                                      - "{{ command == 'remote_button_short_press' }}"
+                                    sequence: !input button_2_single
+                                  - conditions:
+                                      - "{{ command == 'remote_button_double_press' }}"
+                                    sequence: !input button_2_double
+                          # Button 3
+                          - conditions:
+                              - "{{ endpoint_id == 3 }}"
+                            sequence:
+                              - choose:
+                                  - conditions:
+                                      - "{{ command == 'remote_button_short_press' }}"
+                                    sequence: !input button_3_single
+                                  - conditions:
+                                      - "{{ command == 'remote_button_double_press' }}"
+                                    sequence: !input button_3_double
+                          # Button 4
+                          - conditions:
+                              - "{{ endpoint_id == 4 }}"
+                            sequence:
+                              - choose:
+                                  - conditions:
+                                      - "{{ command == 'remote_button_short_press' }}"
+                                    sequence: !input button_4_single
+                                  - conditions:
+                                      - "{{ command == 'remote_button_double_press' }}"
+                                    sequence: !input button_4_double
+                  
+                  # Modifier 1 active
+                  - conditions:
+                      - "{{ active_modifier == 1 }}"
+                    sequence:
+                      - choose:
+                          - conditions:
+                              - "{{ endpoint_id == 1 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod1_button_1_single
+                          - conditions:
+                              - "{{ endpoint_id == 1 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod1_button_1_double
+                          - conditions:
+                              - "{{ endpoint_id == 2 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod1_button_2_single
+                          - conditions:
+                              - "{{ endpoint_id == 2 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod1_button_2_double
+                          - conditions:
+                              - "{{ endpoint_id == 3 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod1_button_3_single
+                          - conditions:
+                              - "{{ endpoint_id == 3 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod1_button_3_double
+                          - conditions:
+                              - "{{ endpoint_id == 4 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod1_button_4_single
+                          - conditions:
+                              - "{{ endpoint_id == 4 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod1_button_4_double
+                  
+                  # Modifier 2 active
+                  - conditions:
+                      - "{{ active_modifier == 2 }}"
+                    sequence:
+                      - choose:
+                          - conditions:
+                              - "{{ endpoint_id == 1 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod2_button_1_single
+                          - conditions:
+                              - "{{ endpoint_id == 1 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod2_button_1_double
+                          - conditions:
+                              - "{{ endpoint_id == 2 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod2_button_2_single
+                          - conditions:
+                              - "{{ endpoint_id == 2 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod2_button_2_double
+                          - conditions:
+                              - "{{ endpoint_id == 3 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod2_button_3_single
+                          - conditions:
+                              - "{{ endpoint_id == 3 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod2_button_3_double
+                          - conditions:
+                              - "{{ endpoint_id == 4 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod2_button_4_single
+                          - conditions:
+                              - "{{ endpoint_id == 4 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod2_button_4_double
+                  
+                  # Modifier 3 active
+                  - conditions:
+                      - "{{ active_modifier == 3 }}"
+                    sequence:
+                      - choose:
+                          - conditions:
+                              - "{{ endpoint_id == 1 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod3_button_1_single
+                          - conditions:
+                              - "{{ endpoint_id == 1 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod3_button_1_double
+                          - conditions:
+                              - "{{ endpoint_id == 2 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod3_button_2_single
+                          - conditions:
+                              - "{{ endpoint_id == 2 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod3_button_2_double
+                          - conditions:
+                              - "{{ endpoint_id == 3 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod3_button_3_single
+                          - conditions:
+                              - "{{ endpoint_id == 3 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod3_button_3_double
+                          - conditions:
+                              - "{{ endpoint_id == 4 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod3_button_4_single
+                          - conditions:
+                              - "{{ endpoint_id == 4 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod3_button_4_double
+                  
+                  # Modifier 4 active
+                  - conditions:
+                      - "{{ active_modifier == 4 }}"
+                    sequence:
+                      - choose:
+                          - conditions:
+                              - "{{ endpoint_id == 1 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod4_button_1_single
+                          - conditions:
+                              - "{{ endpoint_id == 1 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod4_button_1_double
+                          - conditions:
+                              - "{{ endpoint_id == 2 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod4_button_2_single
+                          - conditions:
+                              - "{{ endpoint_id == 2 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod4_button_2_double
+                          - conditions:
+                              - "{{ endpoint_id == 3 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod4_button_3_single
+                          - conditions:
+                              - "{{ endpoint_id == 3 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod4_button_3_double
+                          - conditions:
+                              - "{{ endpoint_id == 4 and command == 'remote_button_short_press' }}"
+                            sequence: !input mod4_button_4_single
+                          - conditions:
+                              - "{{ endpoint_id == 4 and command == 'remote_button_double_press' }}"
+                            sequence: !input mod4_button_4_double
