@@ -6,7 +6,7 @@ blueprint:
     Provides up to 44 different actions!
     
     REQUIRED: You must create these helpers before using this blueprint:
-    1. Input Number (min: 0, max: 4, step: 1)
+    1. Input Number (min: 0, max: 4, step: 1). Make sure you set the inital value ot 0.
     2. Timer
   domain: automation
   input:
