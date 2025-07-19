@@ -1,5 +1,5 @@
 blueprint:
-  name: TS0044 4-Button Remote Advanced (Local)
+  name: TS0044 4-Button Remote Advanced (ZHA)
   description: 'Advanced control for TS0044 4-button remote with modifier support.
 
     Long press can act as a modifier for other buttons or as a standalone action.
